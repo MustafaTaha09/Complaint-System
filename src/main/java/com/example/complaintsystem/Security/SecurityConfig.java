@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(
-                                "/api-documentation/**", // Your custom Swagger UI path
+                                "/api-documentation/**", // custom Swagger UI path
                                 "/swagger-ui.html",    // Default Swagger UI path
                                 "/swagger-ui/**",      // Resources for Swagger UI (CSS, JS etc.)
                                 "/api-docs/**",        // Your custom OpenAPI spec path + resources

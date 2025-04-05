@@ -16,10 +16,9 @@ import org.springframework.context.annotation.Configuration;
         bearerFormat = "JWT",           // Mention JWT format
         scheme = "bearer"               // Use the "bearer" scheme
 )
-// Apply the security globally (optional, you can apply per-controller or per-method)
-// This assumes MOST endpoints need authentication, except the ones explicitly permitted.
+
 @OpenAPIDefinition(
-        info = @Info(title = "Complaint System API", version = "v1", description = "API Documentation"), // Redundant if using properties, but good practice
+        info = @Info(title = "Complaint System API", version = "v1", description = "API Documentation"),
         security = {@SecurityRequirement(name = "Bearer Authentication")} // Apply the scheme globally
 )
 public class JwtConfig {
@@ -30,11 +29,18 @@ public class JwtConfig {
     @Value("${jwt.expirationMs}")
     private long expirationMs;
 
+    @Value("${jwt.refreshExpirationMs}")
+    private long refreshExpirationMs;
+
     public String getSecret() {
         return secret;
     }
 
     public long getExpirationMs() {
         return expirationMs;
+    }
+
+    public long getRefreshExpirationMs() {
+        return refreshExpirationMs;
     }
 }
