@@ -81,7 +81,7 @@ class UserServiceTest {
 
         when(userRepository.findByUsername(createUserDTO.getUsername())).thenReturn(Optional.empty());
 //        when(userRepository.findByEmail(createUserDTO.getEmail())).thenReturn(Optional.empty());
-        when(roleRepository.findById(createUserDTO.getRoleId())).thenReturn(Optional.of(mockRole)); // Stub roleRepository
+        when(roleRepository.findById(createUserDTO.getRoleId())).thenReturn(Optional.of(mockRole));
         when(departmentRepository.findById(createUserDTO.getDepartmentId())).thenReturn(Optional.of(mockDepartment));
         when(passwordEncoder.encode(createUserDTO.getPassword())).thenReturn("hashedPassword");
 //        when(departmentService.convertToDepartmentDTO(mockDepartment)).thenReturn(departmentDTO); // Mock the conversion

@@ -96,7 +96,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorDetails> handleTokenRefreshException(TokenRefreshException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(
                 LocalDateTime.now(),
-                ex.getMessage(), // Use specific message from exception
+                ex.getMessage(),
                 request.getDescription(false));
         log.warn("Token refresh failed: {} on {}", ex.getMessage(), request.getDescription(false));
         // Return 403 Forbidden as defined by @ResponseStatus on the exception class

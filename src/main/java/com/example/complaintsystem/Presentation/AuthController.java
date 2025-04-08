@@ -54,7 +54,7 @@ public class AuthController {
     private RefreshTokenService refreshTokenService;
 
     @Operation(summary = "User Login", description = "Authenticates a user based on username and password, returns a JWT token upon success.",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody( // Describe request body
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "User credentials for login", required = true,
                     content = @Content(schema = @Schema(implementation = UserLoginDTO.class))
             )
@@ -121,7 +121,7 @@ public class AuthController {
 
 
     @Operation(summary = "Register New User", description = "Creates a new user account. This endpoint is public.",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody( // Describe request body
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "Details for the new user account", required = true,
                     content = @Content(schema = @Schema(implementation = CreateUserDTO.class))
             )
@@ -145,4 +145,5 @@ public class AuthController {
         UserDTO savedUser = userService.createUser(createUserDTO);
         return ResponseEntity.created(URI.create("/api/users/" + savedUser.getUserId())).body(savedUser);
     }
+
 }

@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 )
 public class JwtConfig {
 
-    @Value("${jwt.secret}") // we are getting it from application properties
+    @Value("${jwt.secret}") // We are getting it from application properties
     private String secret;
 
     @Value("${jwt.expirationMs}")
