@@ -49,7 +49,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**"      // Default OpenAPI spec path + resources
                         ).permitAll()
                         .requestMatchers("/api/auth/**").permitAll() // Public endpoints
-                        .requestMatchers(HttpMethod.GET, "/tickets/**").permitAll() // Allow GET for tickets
+                        .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").permitAll() // Allow GET for tickets
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .anyRequest().authenticated() // All other requests require authentication
                 )

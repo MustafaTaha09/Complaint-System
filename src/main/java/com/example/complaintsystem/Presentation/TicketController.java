@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/tickets")
-@Tag(name = "Tickets", description = "APIs for managing support tickets")
+@RequestMapping("/api/v1/tickets")
+@Tag(name = "Tickets (v1)", description = "APIs for managing support tickets - Version 1")
 public class TicketController {
 
     private final TicketService ticketService;
@@ -37,20 +37,21 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
-    @Operation(summary = "Get Ticket by ID", description = "Retrieves the details of a specific ticket by its unique ID. Requires authentication.")
+    @Operation(summary = "Get Ticket by ID (v1)", description = "Retrieves the details of a specific ticket by its unique ID.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved ticket",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = GetTicketDTO.class))),
             @ApiResponse(responseCode = "404", description = "Ticket not found with the specified ID", content = @Content),
             @ApiResponse(responseCode = "401", description = "Unauthorized - JWT token missing or invalid", content = @Content)
     })
+
     @GetMapping("/{id}")
     public ResponseEntity<GetTicketDTO> getTicket(@Parameter(description = "Unique ID of the ticket to retrieve", required = true, example = "1") @PathVariable Integer id) {
         GetTicketDTO getTicketDTO = ticketService.getTicketById(id);
         return ResponseEntity.ok(getTicketDTO);
     }
 
-    @Operation(summary = "Create New Ticket", description = "Creates a new support ticket. Requires authentication.",
+    @Operation(summary = "Create New Ticket (v1)", description = "Creates a new support ticket. Requires authentication.",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "Fields to update for the ticket (only include fields to change)",
                     required = true,
@@ -155,7 +156,7 @@ public class TicketController {
         return ResponseEntity.ok(ticketPage);
     }
 
-    @Operation(summary = "Get Ticket History", description = "Retrieves ticket details including creation/update times and comments ordered by date.")
+    @Operation(summary = "Get Ticket History (v1)", description = "Retrieves ticket details including creation/update times and associated comments ordered by date.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved ticket details",
                     content = @Content(mediaType = "application/json",
