@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# .gitignore
+# ... other entries ...
+
+# Security Keys
+src/main/resources/keys/private_key.pem

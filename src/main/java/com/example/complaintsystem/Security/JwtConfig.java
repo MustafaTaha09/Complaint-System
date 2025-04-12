@@ -23,8 +23,15 @@ import org.springframework.context.annotation.Configuration;
 )
 public class JwtConfig {
 
-    @Value("${jwt.secret}") // We are getting it from application properties
-    private String secret;
+//    @Value("${jwt.secret}") // We are getting it from application properties
+//    private String secret;
+
+    // fields for key locations (private & public)
+    @Value("${jwt.private.key.location}")
+    private String privateKeyLocation;
+
+    @Value("${jwt.public.key.location}")
+    private String publicKeyLocation;
 
     @Value("${jwt.expirationMs}")
     private long expirationMs;
@@ -32,9 +39,9 @@ public class JwtConfig {
     @Value("${jwt.refreshExpirationMs}")
     private long refreshExpirationMs;
 
-    public String getSecret() {
-        return secret;
-    }
+//    public String getSecret() {
+//        return secret;
+//    }
 
     public long getExpirationMs() {
         return expirationMs;
@@ -43,4 +50,8 @@ public class JwtConfig {
     public long getRefreshExpirationMs() {
         return refreshExpirationMs;
     }
+
+    public String getPrivateKeyLocation() { return privateKeyLocation; }
+
+    public String getPublicKeyLocation() { return publicKeyLocation; }
 }
