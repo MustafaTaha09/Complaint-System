@@ -32,7 +32,7 @@ This project implements a complete backend solution for a complaint management w
     * CRUD operations for Departments.
     * Prevents deletion of departments assigned to users or tickets.
 * **Security:**
-    * JWT-based Authentication (Access Tokens + Refresh Tokens).
+    * JWT Certificate Based Authentication (Access Tokens + Refresh Tokens).
     * Role-Based Authorization using Spring Security (`@PreAuthorize`, `hasRole`).
     * Secure Password Hashing (BCrypt).
 * **API Documentation:**
