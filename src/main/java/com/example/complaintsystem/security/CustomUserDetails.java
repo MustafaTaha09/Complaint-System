@@ -32,11 +32,11 @@ public class CustomUserDetails implements UserDetails {
         return user.getUsername();
     }
 
-    public Integer getUserId() { // Add a getter for UserId
+    public Integer getUserId() {
         return user.getUserId();
     }
 
-    public User getUser() { //VERY IMPORTANT, USED LATER
+    public User getUser() {
         return this.user;
     }
 }

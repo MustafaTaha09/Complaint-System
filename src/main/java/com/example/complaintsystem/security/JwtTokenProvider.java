@@ -32,27 +32,25 @@ public class JwtTokenProvider {
 
     private final JwtConfig jwtConfig;
 
-    private final ResourceLoader resourceLoader; // Inject ResourceLoader
+    private final ResourceLoader resourceLoader;
 
     // Change key fields
     // private final SecretKey key; // Symmetric key
-    private final PrivateKey privateKey; // Asymmetric private key
-    private final PublicKey publicKey;   // Asymmetric public key
+    private final PrivateKey privateKey;
+    private final PublicKey publicKey;
 
 
     @Autowired
-    public JwtTokenProvider(JwtConfig jwtConfig, ResourceLoader resourceLoader) { // Inject ResourceLoader
+    public JwtTokenProvider(JwtConfig jwtConfig, ResourceLoader resourceLoader) {
         this.jwtConfig = jwtConfig;
-        this.resourceLoader = resourceLoader; // Initialize ResourceLoader
+        this.resourceLoader = resourceLoader;
 
         try {
-            // Load keys during component initialization
             this.privateKey = loadPrivateKey(jwtConfig.getPrivateKeyLocation());
             this.publicKey = loadPublicKey(jwtConfig.getPublicKeyLocation());
             logger.info("Successfully loaded RSA public and private keys.");
         } catch (Exception e) {
             logger.error("Failed to load RSA keys on startup!", e);
-            // Decide how to handle this - fail fast is often best
             throw new RuntimeException("Could not initialize JWT provider: Failed to load keys", e);
         }
     }
@@ -145,8 +143,7 @@ public class JwtTokenProvider {
 //    }
 
 
-    private Claims getClaimsFromJWT(String token) { // Ensure it's private
-        // Add logging if needed for debugging parsing itself
+    private Claims getClaimsFromJWT(String token) {
         // log.debug("Attempting to parse claims from token");
         return Jwts.parserBuilder()
                 .setSigningKey(publicKey) // Verify with public key
